@@ -1,0 +1,174 @@
+import React, { Component } from 'react'
+import * as d3 from 'd3';
+export class TestTimeline extends Component {
+    state = {
+        timePeriods: ['Archaic', 'Classical', 'Late Antique', 'Late Antiquity', 'Geometric', 'Hellenistic'],
+        timePeroidCounts: [],
+        updateData: true,
+        circles: {},
+    }
+    
+    componentDidMount(){
+        let arr = [];
+        this.state.timePeriods.forEach(period => {
+            let newCount = {
+                period: period,
+                count: 0
+            }
+            arr.push(newCount)
+        });
+        this.setState({timePeroidCounts: arr})
+    }
+    componentDidUpdate(){
+        if(this.props.combinedData.length > 0 && this.state.updateData) {
+            let timePeriods = this.state.timePeriods;
+            let counter = this.state.timePeroidCounts;
+            this.props.combinedData.forEach(dataElement => {
+                if(timePeriods.includes(dataElement.Chronology1stImpression)){ 
+                    counter.forEach(timeperiod => {
+                        if(timeperiod.period === dataElement.Chronology1stImpression){ timeperiod.count += 1 } 
+                    })
+                }
+            })
+            this.setState({timePeroidCounts: counter, updateData: false})
+            this.renderSVG(counter)
+        }
+    }
+
+    turnAroundSVG = () => {
+        this.updateSVG(this.state.timePeroidCounts.reverse())
+    }
+
+    updateSVG = counter => {
+        var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        width = 1400 - margin.left - margin.right,
+        height = 650 - margin.top - margin.bottom;
+
+        var x = d3.scaleBand()
+            .range([0, width])
+            .padding(0.1);
+        x.domain(counter.map(function(d) { return d.period; }));
+            let newdata = [];
+            counter.forEach(dataElement => {
+                let totalcolumns = counter.length
+                let columnpadding = 20
+                let dotwidth = 8
+                let columnwidth = (width / totalcolumns) - columnpadding
+                let xDots = Math.floor(columnwidth / dotwidth)
+
+                let yCalc = 0;
+                let xCalc = 0;
+                let xCalcCoords = 0;
+                for(let i=0;i<=dataElement.count;i++) {
+                    let thisY = yCalc
+                    let thisXCoords = xCalcCoords
+                    if(xCalc === xDots - 1) {
+                        yCalc = yCalc += 8;
+                        xCalc = 0;
+                        xCalcCoords = 0;
+                    } else {
+                        xCalc = xCalc += 1
+                        xCalcCoords = xCalcCoords += 8
+                    }
+                    let newElement = {
+                        person: dataElement.period,
+                        cx: function() { return x(dataElement.period) + thisXCoords + 2.5;},
+                        cy: function() { return height - thisY - 5}
+                    }
+                    newdata.push(newElement)
+                }
+            });
+            let circles = this.state.circles;
+            let delayMax = 1000;
+            circles
+                .data(newdata)
+                .transition()
+                .duration(600)
+                .delay(function(d){return Math.random()*delayMax;})
+                .attr('cx', (d) => {return d.cx() })
+                .attr('cy', (d) => { return d.cy() })
+    }
+    
+    renderSVG = (counter) => {
+        var margin = {top: 20, right: 20, bottom: 30, left: 40},
+            width = 1400 - margin.left - margin.right,
+            height = 650 - margin.top - margin.bottom;
+                
+            var svg = d3.select("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", 
+                    "translate(" + margin.left + "," + margin.top + ")");
+
+            var x = d3.scaleBand()
+                .range([0, width])
+                .padding(0.1);
+            var y = d3.scaleLinear()
+                    .range([height, 0]);
+
+            x.domain(counter.map(function(d) { return d.period; }));
+            y.domain([0, d3.max(counter, function(d) { return d.count; })]);
+
+            let newdata = [];
+            counter.forEach(dataElement => {
+                let totalcolumns = counter.length
+                let columnpadding = 20
+                let dotwidth = 8
+                let columnwidth = (width / totalcolumns) - columnpadding
+                let xDots = Math.floor(columnwidth / dotwidth)
+
+                let yCalc = 0;
+                let xCalc = 0;
+                let xCalcCoords = 0;
+                for(let i=0;i<=dataElement.count;i++) {
+                    let thisY = yCalc
+                    let thisXCoords = xCalcCoords
+                    if(xCalc === xDots - 1) {
+                        yCalc = yCalc += 8;
+                        xCalc = 0;
+                        xCalcCoords = 0;
+                    } else {
+                        xCalc = xCalc += 1
+                        xCalcCoords = xCalcCoords += 8
+                    }
+                    let newElement = {
+                        person: dataElement.period,
+                        cx: function() { return x(dataElement.period) + thisXCoords + 2.5;},
+                        cy: function() { return height - thisY - 5}
+                    }
+                    newdata.push(newElement)
+                }
+            });
+            let circles = svg.selectAll('circle')
+                .data(newdata)
+                .enter()
+                .append('circle')
+                .attr('r', 3)
+                .attr('cx', (d) => { return d.cx() })
+                .attr('cy', (d) => { return d.cy() })
+            
+            // add the x Axis
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x));
+
+            // add the y Axis
+            svg.append("g")
+                .call(d3.axisLeft(y));
+            
+            this.setState({circles: circles})
+
+    }
+
+    render() {
+        return (
+            <div>
+                <svg></svg>
+                <button onClick={this.turnAroundSVG}>Reverse</button>
+            </div>
+        )
+    }
+}
+
+export default TestTimeline
