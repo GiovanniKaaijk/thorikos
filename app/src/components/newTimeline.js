@@ -6,6 +6,7 @@ export class TestTimeline extends Component {
         timePeroidCounts: [],
         updateData: true,
         circles: {},
+        selectedTimeFilter: []
     }
     
     componentDidMount(){
@@ -20,11 +21,19 @@ export class TestTimeline extends Component {
         this.setState({timePeroidCounts: arr})
     }
     componentDidUpdate(){
+        this.countobjects()
+    }
+
+    countobjects = () => {
         if(this.props.combinedData.length > 0 && this.state.updateData) {
-            let timePeriods = this.state.timePeriods;
+            let filter = this.state.selectedTimeFilter;
+            if(this.state.selectedTimeFilter >= 0){
+                filter = this.state.timePeriods
+            }
+            
             let counter = this.state.timePeroidCounts;
             this.props.combinedData.forEach(dataElement => {
-                if(timePeriods.includes(dataElement.Chronology1stImpression)){ 
+                if(filter.includes(dataElement.Chronology1stImpression)){ 
                     counter.forEach(timeperiod => {
                         if(timeperiod.period === dataElement.Chronology1stImpression){ timeperiod.count += 1 } 
                     })
@@ -33,6 +42,36 @@ export class TestTimeline extends Component {
             this.setState({timePeroidCounts: counter, updateData: false})
             this.renderSVG(counter)
         }
+    }
+
+    changeTimefilter = (filter) => {
+        if(!this.state.selectedTimeFilter.includes(filter)) {
+            let newarr = [...this.state.selectedTimeFilter, filter]
+            this.setState({selectedTimeFilter: newarr})
+        } else {
+            let newarr = [...this.state.selectedTimeFilter]
+            let index = newarr.indexOf(filter)
+            newarr.splice(index, 1)
+            this.setState({selectedTimeFilter: newarr})
+        }
+    }
+
+    deleteSVG = () => {
+        let svg = document.querySelector('svg')
+        svg.remove();
+    }
+
+    runFilter = () => {
+        this.deleteSVG()
+        let arr = [];
+        this.state.timePeriods.forEach(period => {
+            let newCount = {
+                period: period,
+                count: 0
+            }
+            arr.push(newCount)
+        });
+        this.setState({updateData: true, timePeroidCounts: arr}, this.countobjects())
     }
 
     turnAroundSVG = () => {
@@ -59,7 +98,7 @@ export class TestTimeline extends Component {
                 let yCalc = 0;
                 let xCalc = 0;
                 let xCalcCoords = 0;
-                for(let i=0;i<=dataElement.count;i++) {
+                for(let i=0;i<=dataElement.count - 1;i++) {
                     let thisY = yCalc
                     let thisXCoords = xCalcCoords
                     if(xCalc === xDots - 1) {
@@ -90,11 +129,11 @@ export class TestTimeline extends Component {
     }
     
     renderSVG = (counter) => {
-        var margin = {top: 20, right: 20, bottom: 30, left: 40},
-            width = 1400 - margin.left - margin.right,
-            height = 650 - margin.top - margin.bottom;
+            var margin = {top: 20, right: 20, bottom: 30, left: 40},
+                width = 1400 - margin.left - margin.right,
+                height = 650 - margin.top - margin.bottom;
                 
-            var svg = d3.select("svg")
+            var svg = d3.select(".svg").append('svg')
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
@@ -107,21 +146,23 @@ export class TestTimeline extends Component {
             var y = d3.scaleLinear()
                     .range([height, 0]);
 
+            let totalcolumns = counter.length
+            let columnpadding = 20
+            let dotwidth = 8
+            let columnwidth = (width / totalcolumns) - columnpadding
+            let xDots = Math.floor(columnwidth / dotwidth)
+            //let highestNumber = d3.max(counter, function(d) { return d.count; });
+            let maxDomain = Math.ceil((height/(2*(3+1.1))*xDots));
             x.domain(counter.map(function(d) { return d.period; }));
-            y.domain([0, d3.max(counter, function(d) { return d.count; })]);
 
+            y.domain([0, maxDomain]);
             let newdata = [];
             counter.forEach(dataElement => {
-                let totalcolumns = counter.length
-                let columnpadding = 20
-                let dotwidth = 8
-                let columnwidth = (width / totalcolumns) - columnpadding
-                let xDots = Math.floor(columnwidth / dotwidth)
 
                 let yCalc = 0;
                 let xCalc = 0;
                 let xCalcCoords = 0;
-                for(let i=0;i<=dataElement.count;i++) {
+                for(let i=0;i<=dataElement.count -1;i++) {
                     let thisY = yCalc
                     let thisXCoords = xCalcCoords
                     if(xCalc === xDots - 1) {
@@ -156,7 +197,7 @@ export class TestTimeline extends Component {
             // add the y Axis
             svg.append("g")
                 .call(d3.axisLeft(y));
-            
+
             this.setState({circles: circles})
 
     }
@@ -164,8 +205,15 @@ export class TestTimeline extends Component {
     render() {
         return (
             <div>
-                <svg></svg>
+                
                 <button onClick={this.turnAroundSVG}>Reverse</button>
+                {this.state.timePeriods.map(timePeriod => (
+                    <div key={timePeriod} className="filter">
+                        <label htmlFor={timePeriod}>{timePeriod}</label>
+                        <input type="checkbox" id={timePeriod} onClick={this.changeTimefilter.bind(this, timePeriod)} />
+                    </div>
+                ))}
+                <button onClick={this.runFilter}>Filter</button>
             </div>
         )
     }

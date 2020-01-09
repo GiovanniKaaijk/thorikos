@@ -20,8 +20,9 @@ class App extends Component {
       <div className="App">
         <Header />
         <div className="container">
-
-          <NewTimeline combinedData={this.state.data} />
+          <div className="svg">
+            <NewTimeline combinedData={this.state.data} />
+          </div> 
 
           <Data setNewState={this.setNewState} />
         </div>
