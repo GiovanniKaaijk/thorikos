@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3';
-import allSurveyEntries from '../data/Survey_ALL_20189entries_2019_12_09.csv'
+import allSurveyEntries from '../data/surveydata.csv'
 import allFieldsheets from '../data/AllFieldsheets.csv'
 
 export class Data extends Component {
@@ -19,6 +19,7 @@ export class Data extends Component {
                 console.log(data)
                 data.forEach(dataElement => {
                     if(dataElement.Context){
+                        dataElement.Chronology1stImpression = dataElement.Chronology1stImpression.toLowerCase();
                         if(dataElement.Context.length === 7) {
                             dataElement.Context = [parseInt(dataElement.Context.slice(4,7)), 0]
                         } else if (dataElement.Context.length === 9) {

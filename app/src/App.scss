@@ -1,3 +1,28 @@
+@font-face {
+  font-family: montserrat;
+  @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+}
+@font-face {
+  font-family: 'bebas neue';
+  @import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
+}
+
+
+* {
+  font-family: 'bebas neue', montserrat;
+}
+
+label, button {
+  font-size: 18px;
+}
+
+text {
+  font-size: 12px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: montserrat;
+}
 .App-header {
   background-color: #282c34;
   display: flex;
@@ -33,5 +58,70 @@
 }
 
 .container {
-  margin-top: 80px;
+  //margin-top: 80px;
+  //background-color: #e7a6bd;
+  .svg {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    .sidebar {
+      background-color: #020304;
+      color: #ffffff;
+      width: 15%;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0px 4px rgba(0,0,0,0.36), 0 0px 9px rgba(0,0,0,0.43);
+      h1 {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .timeperiods {
+        margin: 0 auto;
+        width: 80%;
+        .filter {
+          display: flex;
+          label {
+            display: flex;
+            width: 100%;
+            sup {
+              font-size: 10px;
+              margin-left: auto;
+              margin-right: 5px;
+            }
+          }
+          input {
+            margin-left: auto;
+            margin-right: 0;
+          }
+        }
+      }
+      .filterBtn {
+        width: 80%;
+        margin: 10px auto;
+        padding: 5px;
+        box-sizing: border-box;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: all .3s;
+        outline: none;
+        &:hover {
+          letter-spacing: 1.2px;
+        }
+      }
+    }
+    svg {
+      margin-top: auto;
+      //background-image: url(./images/svg_texture.png);
+    }
+    .tooltip {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 0px 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.36);
+      transition: opacity .3s;
+      pointer-events: none;
+    }
+  }
 }
