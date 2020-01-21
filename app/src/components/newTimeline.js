@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3';
+//import { countobjects } from '../helpers/counter';
+import { mapcount } from '../helpers/mapcount';
 export class TestTimeline extends Component {
     state = {
         timePeriods: ["archaic", "archaic/classical", "roman", "late bronze age", "final neolithic", "late archaic", "roman/late antique", "byzantine", "early bronze age", "early modern", "final neolithic/early bronze age", "classical/hellenistic", "modern", "geometric/archaic", "medieval/early modern", "medieval", "mycenaean", "late geometric", "archaic/hellenistic", "classical", "late antique", "late antiquity", "geometric", "bronze age", "late roman", "proto-geometric/geometric", "neolithic/early bronze age", "middle bronze age/late bronze age", "prehistoric", "late neolithic/final neolithic", "middle bronze age", "late classical/hellenistic", "late classical/roman", "late antique/medieval", "early bronze age ii", "middle geometric/late geometric", "roman/medieval", "classical/medieval", "classical/byzantine", "late antique/byzantine", "early geometric ii/middle geometric i", "early proto-geometric", "late proto-geometric/ geometric", "early bronze age/middle bronze age", "early iron age/archaic", "early iron age", "late geometric/early archaic", "late geometric ii", "late neolithic/early bronze age", "hellenistic/roman", "sub-geometric", "late classical", "late neolithic/bronze age", "proto-geometric/archaic", "geometric-classical", "neolithic/bronze age", "bronze age/archaic", "classical/late antique", "late antique-early modern", "archaic/late antique", "middle geometric", "bronze age/classical", "classical/late roman", "archaic/late roman", "prehistoric/archaic", "roman/early modern", "early geometric", "early christian", "late neolithic", "undetermined"],
+        collectingHours: ['06', '07', '08', '09', '10', '11', '12', '13'],
+        filterType: 'period',
         timePeroidCounts: [],
         topTenCounts: [],
         updateData: true,
@@ -16,7 +20,9 @@ export class TestTimeline extends Component {
         x: 0,
         y: 0,
         currentCount: [],
-        CollectingTimeFilter: []
+        CollectingTimeFilter: [],
+        periodToggle: false,
+        timeToggle: false
     }
 
     /**
@@ -31,15 +37,15 @@ export class TestTimeline extends Component {
             // property doesn't exist on either object
             return 0;
           }
-          const varA = (typeof a[key] === 'string')
+          const letA = (typeof a[key] === 'string')
             ? a[key].toUpperCase() : a[key];
-          const varB = (typeof b[key] === 'string')
+          const letB = (typeof b[key] === 'string')
             ? b[key].toUpperCase() : b[key];
           
           let comparison = 0;
-          if (varA > varB) {
+          if (letA > letB) {
             comparison = 1;
-          } else if (varA < varB) {
+          } else if (letA < letB) {
             comparison = -1;
           }
           return (
@@ -58,37 +64,86 @@ export class TestTimeline extends Component {
             }
             arr.push(newCount)
         });
+        
         this.setState({timePeroidCounts: arr})
     }
     componentDidUpdate(){
-        this.countobjects()
-        this.setupTime()
+        this.countobjects(this.state.filterType)
     }
 
-    countobjects = () => {
+    countobjects = (filterType) => {
+        // console.log(filterType, this.state.updateData)
         if(this.props.combinedData.length > 0 && this.state.updateData) {
-            let filter = this.state.selectedTimeFilter;
-            if(this.state.selectedTimeFilter >= 0){
-                filter = this.state.timePeriods
-            }
-            
+            let filter;
             let counter = this.state.timePeroidCounts;
             let newcountTracker = [];
             let newCounter = [];
-            this.props.combinedData.forEach(dataElement => {
-                if(filter.includes(dataElement.Chronology1stImpression)){ 
-                    counter.forEach(timeperiod => {
-                        if(timeperiod.period === dataElement.Chronology1stImpression){ 
-                            if(!newcountTracker.includes(timeperiod.period)){
-                                newcountTracker.push(timeperiod.period)
-                                newCounter.push(timeperiod)
-                            }
-                            timeperiod.count += 1 
-                            timeperiod.objects.push(dataElement)
-                        } 
-                    })
+            let combinedData = this.props.combinedData;
+            console.log(combinedData)
+            if(filterType === 'period') {
+                    filter = this.state.selectedTimeFilter;
+                if(this.state.selectedTimeFilter.length <= 0){
+                    filter = this.state.timePeriods
                 }
-            })
+
+                let timeFilter;
+                if(this.state.timeToggle === true) {
+                    timeFilter = this.state.CollectingTimeFilter;
+                } else {
+                    timeFilter = this.state.collectingHours
+                }
+                
+                combinedData.forEach(dataElement => {
+                    if(dataElement.time && dataElement.time.length === 8){
+                        let time = dataElement.time;
+                        dataElement.time = time.substring(0,2)
+                    }
+                    if(filter.includes(dataElement.Chronology1stImpression) && timeFilter.includes(dataElement.time)){ 
+                        counter.forEach(timeperiod => {
+                            if(timeperiod.period === dataElement.Chronology1stImpression){ 
+                                if(!newcountTracker.includes(timeperiod.period)){
+                                    newcountTracker.push(timeperiod.period)
+                                    newCounter.push(timeperiod)
+                                }
+                                timeperiod.count += 1 
+                                timeperiod.objects.push(dataElement)
+                            } 
+                        })
+                    }
+                })
+            } else if (filterType === 'time') {
+                filter = this.state.CollectingTimeFilter;
+                if(this.state.CollectingTimeFilter.length <= 0){
+                    filter = this.state.collectingHours
+                }
+                let periodFilter;
+                if(this.state.periodToggle === true) {
+                    periodFilter = this.state.selectedTimeFilter;
+                } else {
+                    periodFilter = this.state.timePeriods
+                }
+
+                counter = this.state.currentCount
+                combinedData.forEach(dataElement => {
+                    if(dataElement.time && dataElement.time.length === 8){
+                        let time = dataElement.time;
+                        dataElement.time = time.substring(0,2)
+                    }
+                    if(filter.includes(dataElement.time) && periodFilter.includes(dataElement.Chronology1stImpression)){ 
+                        counter.forEach(timeperiod => {
+                            if(timeperiod.period === dataElement.time){ 
+                                if(!newcountTracker.includes(timeperiod.period)){
+                                    newcountTracker.push(timeperiod.period)
+                                    newCounter.push(timeperiod)
+                                }
+                                timeperiod.count += 1 
+                                timeperiod.objects.push(dataElement)
+                            } 
+                        })
+                    }
+                })
+            }
+
             newCounter.sort(this.dynamicSort('count', 'desc'))
             newCounter = newCounter.splice(0,11)
             if(this.state.firstInit === true) {
@@ -99,33 +154,49 @@ export class TestTimeline extends Component {
                 this.setupTime(true)
                 this.renderSVG(newCounter) 
             }
-            else { this.updateSVG(newCounter, 'period') }
+            else { this.updateSVG(newCounter, filterType) }
             this.setState({timePeroidCounts: counter, updateData: false, firstInit: false, currentCount: newCounter})
         }
     }
 
     changePeriodfilter = (filter) => {
+        let newarr = []
         if(!this.state.selectedTimeFilter.includes(filter)) {
-            let newarr = [...this.state.selectedTimeFilter, filter]
-            this.setState({selectedTimeFilter: newarr})
+             newarr = [...this.state.selectedTimeFilter, filter]
         } else {
-            let newarr = [...this.state.selectedTimeFilter]
+             newarr = [...this.state.selectedTimeFilter]
             let index = newarr.indexOf(filter)
             newarr.splice(index, 1)
-            this.setState({selectedTimeFilter: newarr})
         }
+        this.setState({selectedTimeFilter: newarr}, () => {
+            let toggle = Boolean;
+            if(this.state.selectedTimeFilter.length > 0) {
+                toggle = true
+            } else {
+                toggle = false
+            }
+            this.setState({periodToggle: toggle})
+        })
     }
 
     changeTimefilter = (filter) => {
-        if(!this.state.selectedTimeFilter.includes(filter)) {
-            let newarr = [...this.state.selectedTimeFilter, filter]
-            this.setState({CollectingTimeFilter: newarr})
+        let newarr = [];
+        if(!this.state.CollectingTimeFilter.includes(filter)) {
+             newarr = [...this.state.CollectingTimeFilter, filter]
         } else {
-            let newarr = [...this.state.selectedTimeFilter]
+             newarr = [...this.state.CollectingTimeFilter]
             let index = newarr.indexOf(filter)
             newarr.splice(index, 1)
-            this.setState({CollectingTimeFilter: newarr})
         }
+        this.setState({CollectingTimeFilter: newarr}, () => {
+            let toggle = Boolean;
+            if(this.state.CollectingTimeFilter.length > 0) {
+                toggle = true
+            } else {
+                toggle = false
+            }
+            this.setState({timeToggle: toggle})
+        })
     }
 
     deleteSVG = () => {
@@ -144,7 +215,7 @@ export class TestTimeline extends Component {
             }
             arr.push(newCount)
         });
-        this.setState({updateData: true, timePeroidCounts: arr}, this.countobjects())
+        this.setState({updateData: true, timePeroidCounts: arr, filterType: 'period'}, this.countobjects('period'))
     }
 
     setupTime = (firstInit) => {
@@ -152,14 +223,14 @@ export class TestTimeline extends Component {
         let hours = [];
         let checkedHours = [];
         count.forEach(element => {
-            if(element.time && element.time.length === 8){
+            if(element.time){
                 let time = element.time;
-                time = time.substring(0,2)
                 if(!checkedHours.includes(time)){
                     checkedHours.push(time)
                     hours.push({
                         period: time,
-                        count: 0
+                        count: 0,
+                        objects: []
                     })
                 }
                 let index = hours.findIndex(h => h.period === time)
@@ -173,9 +244,16 @@ export class TestTimeline extends Component {
     }
 
     filterTime = () => {
-        let hours = this.state.hours;
-        
-        this.updateSVG(hours, 'time')
+        let arr = [];
+        this.state.hours.forEach(time => {
+            let newCount = {
+                period: time.period,
+                count: 0,
+                objects: []
+            }
+            arr.push(newCount)
+        });
+        this.setState({updateData: true, currentCount: arr, filterType: 'time'}, this.countobjects('time'))
     }
 
     updateSVG = (counter, periods) => {
@@ -239,7 +317,7 @@ export class TestTimeline extends Component {
         });
         let circles = this.state.circles;
         
-        let delayMax = 5000;
+        let delayMax = 1000;
         circles
             .selectAll('circle')
             .data(newdata)
@@ -252,11 +330,12 @@ export class TestTimeline extends Component {
             .selectAll('circle')
             .data(newdata)
             .exit()
-            .transition()
-            .duration(600)
-            .delay(function(d){return Math.random()*delayMax/2;})
-            .attr('cx', '0')
-            .attr('cy', '0')
+            // .transition()
+            // .duration(600)
+            // .delay(function(d){return Math.random()*delayMax/2;})
+            // .attr('cx', '0')
+            // .attr('cy', '0')
+            // .style('opacity', 0)
             .remove()
 
         circles
@@ -275,7 +354,8 @@ export class TestTimeline extends Component {
         this.bindXValues()
 
         circles.select('.axis-y')   
-            .call(d3.axisLeft(y).ticks(10))     
+            .call(d3.axisLeft(y).ticks(10))  
+        this.setState({})
     }
     
     renderSVG = (counter) => {
@@ -361,14 +441,12 @@ export class TestTimeline extends Component {
                 .call(d3.axisLeft(y));
             this.bindXValues()
             this.setState({circles: svg})
-
     }
 
     bindXValues = () => {
         d3.selectAll('.axis-x .tick')
             .style("pointer-events", "visiblePainted")
             .on("mousemove", (d) => {
-                console.log(d)
                 let thisCount;
                 this.state.currentCount.forEach(count => {
                     if(count.period === d) {
@@ -392,11 +470,109 @@ export class TestTimeline extends Component {
             })
     }
 
+    createMap = () => {
+        let svg = this.state.circles;
+        let margin = {top: 20, right: 20, bottom: 30, left: 40},
+            width = this.state.svgWidth - margin.left - margin.right;
+        let griddata = this.props.gridData(),
+                step = width / 20,
+                xStepInterval = 0,
+                yStepInterval = 0
+            
+            griddata.forEach(gridElement => {
+                gridElement.x = step * xStepInterval
+                gridElement.y = step * yStepInterval
+                if(xStepInterval === 19) {
+                    xStepInterval = 0;
+                    yStepInterval += 1;
+                } else {
+                    xStepInterval += 1;
+                }
+            })
+            
+            svg 
+                .selectAll('rect')
+                .data(griddata)
+                .enter()
+                .append('rect')
+                .attr("x", (d) => {return d.x })                         
+                .attr("y", (d) => {return d.y })
+                .attr("width", step)
+                .attr("height", step)
+                .style('fill', 'transparent')
+                .style('stroke', (d) => { return d.context === null ? null : 'black' })
+            svg
+                .selectAll('.axis-x')                
+                .remove()
+            svg
+                .selectAll('.axis-y')
+                .remove()
+
+            let newarr = []
+            let counter = mapcount(this.props.combinedData, griddata);
+            let periodFilter = this.state.selectedTimeFilter;
+            if(this.state.selectedTimeFilter.length <= 0){
+                periodFilter = this.state.timePeriods
+            }
+            let timeFilter;
+            if(this.state.timeToggle === true) {
+                timeFilter = this.state.CollectingTimeFilter;
+            } else {
+                timeFilter = this.state.collectingHours
+            }
+            
+            counter.forEach(count => {
+                if(count.objects.length > 0) {
+                    count.objects.forEach(object => {
+                        if(periodFilter.includes(object.Chronology1stImpression) && timeFilter.includes(object.time)) {
+                            object.x = count.x + (Math.random() * step)
+                            object.y = count.y + (Math.random() * step)
+                            newarr.push(object)
+                        }
+                    })
+                }
+            })
+            console.log(newarr)
+            let delayMax = 1000;
+            svg
+                .selectAll('circle')
+                .data(newarr)
+                .transition()
+                .duration(600)
+                .delay(function(d){return Math.random()*delayMax;})
+                .attr('cx', (d) => { return d.x })
+                .attr('cy', (d) => { return d.y })
+            svg
+                .selectAll('circle')
+                .data(newarr)
+                .exit()
+                // .transition()
+                // .duration(600)
+                // .delay(function(d){return Math.random()*delayMax/2;})
+                // .attr('cx', '0')
+                // .attr('cy', '0')
+                // .style('opacity', 0)
+                .remove()
+
+            svg
+                .selectAll('circle')
+                .data(newarr)
+                .enter()
+                .append('circle')
+                .attr('r', this.state.dotRadius)
+                .transition()
+                .duration(600)
+                .delay(function(d){return Math.random()*delayMax;})
+                .attr('cx', (d) => {return d.x })
+                .attr('cy', (d) => { return d.y });
+    }
+
     render() {
         
         return (
             <div className="sidebar">
                 <h1>Filter</h1>
+                <button onClick={this.createMap}>map</button>
                 <div className="timeperiods">
                     {this.state.topTenCounts.map(timePeriod => (
                         <div key={timePeriod.period} className="filter">

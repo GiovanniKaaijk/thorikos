@@ -16,7 +16,6 @@ export class Data extends Component {
         let cleanData = async () => {
             await d3.csv(allSurveyEntries).then((data, err) => {
                 if(err) { console.log(err) } 
-                console.log(data)
                 data.forEach(dataElement => {
                     if(dataElement.Context){
                         dataElement.Chronology1stImpression = dataElement.Chronology1stImpression.toLowerCase();

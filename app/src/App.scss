@@ -7,13 +7,12 @@
   @import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
 }
 
-
 * {
-  font-family: 'bebas neue', montserrat;
+  font-family: montserrat;
 }
 
 label, button {
-  font-size: 18px;
+  font-size: 14px;
 }
 
 text {
@@ -21,21 +20,26 @@ text {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: montserrat;
+  font-family: montserrat, 'bebas neue';
 }
-.App-header {
-  background-color: #282c34;
+
+header {
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   font-size: 18px;
-  color: white;
+  color: #000;
   padding: 10px 0;
   display: flex;
   flex-direction: row;
   position: fixed;
   top: 0;
   width: 100vw;
+  transition: all .3s;
+  z-index: 100;
   img {
+    opacity: 0;
+    visibility: hidden;
     width: auto;
     height: 60px;
     margin-left: 30px;
@@ -56,10 +60,166 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 }
+header.scrolled {
+  background-color: #282c34;
+  color: #fff;
+  img {
+    filter: invert(1);
+    &.show {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
 
 .container {
   //margin-top: 80px;
-  //background-color: #e7a6bd;
+  .banner {
+    min-height: 100vh;
+    box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+  .banner {
+    background-image: url(./images/banner.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    position: relative;
+    img.banner-logo {
+      width: auto;
+      height: 200px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      filter: invert(1);
+      transition: all .3s;
+      z-index: 101;
+      &.switch {
+        height: 60px;
+        top: 5%;
+        left: 83px;
+        position: fixed;
+      }
+      &.hide {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+  .introduction {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 100vh;
+    .circle {
+      position: absolute;
+      width: 200px;
+      bottom: 0;
+    }
+    .seperator {
+      margin: 0;
+      width: 100%;
+      height: auto;
+    }
+    .flex {
+      display: flex;
+      height: 100%;
+      div:first-of-type {
+        margin: 5% 25% 0 10%;
+      }
+      div:last-of-type {
+        margin: 5% 10% 0 0;
+      }
+      div {
+        width: 50%;
+        .spots {
+          position: absolute;
+          width: 35%;
+          z-index: 2;
+          left: 850px;
+        }
+        .character {
+          position: absolute;
+          bottom: 0;
+          width: 250px;
+          left: 900px;
+          z-index: 3;
+        }
+      }
+      h2 {
+        color: #531036;
+        font-family: 'bebas neue';
+        font-size: 40px;
+      }
+    }
+    &.location {
+      .flex {
+        div {
+          &:first-of-type {
+            margin-right: 100px;
+            padding-right: 50px;
+            box-sizing: border-box;
+          }
+          .spots {
+            z-index: -1;
+            transform: scale(-1, 1) rotate(-10deg);
+            left: 750px;
+          }
+          .location-img {
+            width: 350px;
+            margin-top: 225px;
+          }
+        }
+      }
+      .circle {
+        right: 0;
+        bottom:0;
+        transform: scale(-1, 1);
+      }
+    }
+    &.about {
+      .circle {
+        left: 0;
+        top:0;
+      }
+    }
+    &.background {
+      background-image: url(./images/background.png);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      .flex {
+        box-sizing: border-box;
+        margin-top: 100px;
+        div {
+          &:first-of-type {
+            margin: 5% 10% 0 0%;
+          }
+          &:last-of-type {
+            padding-right: 10%;
+            box-sizing: border-box;
+          }
+          h2 {
+            color: #fff;
+          }
+          p {
+            color: #fff;
+          }
+          .character {
+            position: absolute;
+            bottom: 0;
+            width: 250px;
+            left: 300px;
+            z-index: 3;
+          }
+        }
+      }
+    }
+  }
+
   .svg {
     min-height: 100vh;
     display: flex;
@@ -112,6 +272,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     svg {
       margin-top: auto;
+      margin-left: 10px;
       //background-image: url(./images/svg_texture.png);
     }
     .tooltip {
