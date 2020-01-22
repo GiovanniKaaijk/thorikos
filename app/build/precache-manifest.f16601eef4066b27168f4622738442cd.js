@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c7f9b995e036f379aa02a3fa1658780a",
+    "revision": "1175d1343d191bed193770cfcbe267cf",
     "url": "/thorikos/index.html"
   },
   {
-    "revision": "fe50690c8a45d71da44c",
-    "url": "/thorikos/static/css/main.512bc7db.chunk.css"
+    "revision": "5cc5e32c0e67fab11879",
+    "url": "/thorikos/static/css/main.fec3ec04.chunk.css"
   },
   {
-    "revision": "6b970e1d5d6a1db4df98",
-    "url": "/thorikos/static/js/2.13f2c925.chunk.js"
+    "revision": "8fd3ac5bb3908d6e34b3",
+    "url": "/thorikos/static/js/2.c4eff05a.chunk.js"
   },
   {
     "revision": "6aeb469c0c20fd3334c86de961c4692c",
-    "url": "/thorikos/static/js/2.13f2c925.chunk.js.LICENSE"
+    "url": "/thorikos/static/js/2.c4eff05a.chunk.js.LICENSE"
   },
   {
-    "revision": "fe50690c8a45d71da44c",
-    "url": "/thorikos/static/js/main.24ed6ad3.chunk.js"
+    "revision": "5cc5e32c0e67fab11879",
+    "url": "/thorikos/static/js/main.af87dbe3.chunk.js"
   },
   {
     "revision": "087890d4804de33390ff",
@@ -52,14 +52,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/thorikos/static/media/banner.2bdaffa1.png"
   },
   {
-    "revision": "c5f59a72b4b0e2917541cacede1f727e",
-    "url": "/thorikos/static/media/character.c5f59a72.png"
-  },
-  {
-    "revision": "c52c9d5d0092aa9ecc2d59ddb9d13463",
-    "url": "/thorikos/static/media/circle.c52c9d5d.png"
-  },
-  {
     "revision": "b90ed10a20972c909e2edd29df648cba",
     "url": "/thorikos/static/media/logo.b90ed10a.svg"
   },
@@ -74,6 +66,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "a84383447ae641c05c1f962033471f42",
     "url": "/thorikos/static/media/surveydata.a8438344.csv"
+  },
+  {
+    "revision": "f40cbd8bb3f519afb57462e2b035cff2",
+    "url": "/thorikos/static/media/vase.f40cbd8b.png"
   },
   {
     "revision": "fb534b3da1d5559e0104b8e13a87415e",
