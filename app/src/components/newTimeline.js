@@ -22,7 +22,8 @@ export class TestTimeline extends Component {
         currentCount: [],
         CollectingTimeFilter: [],
         periodToggle: false,
-        timeToggle: false
+        timeToggle: false,
+        map: false
     }
 
     /**
@@ -72,7 +73,6 @@ export class TestTimeline extends Component {
     }
 
     countobjects = (filterType) => {
-        // console.log(filterType, this.state.updateData)
         if(this.props.combinedData.length > 0 && this.state.updateData) {
             let filter;
             let counter = this.state.timePeroidCounts;
@@ -199,13 +199,7 @@ export class TestTimeline extends Component {
         })
     }
 
-    deleteSVG = () => {
-        let svg = document.querySelector('svg')
-        svg.remove();
-    }
-
     runFilter = () => {
-        //this.deleteSVG()
         let arr = [];
         this.state.timePeriods.forEach(period => {
             let newCount = {
@@ -257,6 +251,7 @@ export class TestTimeline extends Component {
     }
 
     updateSVG = (counter, periods) => {
+        document.querySelector('.svg').classList.remove('map')
         let margin = {top: 20, right: 20, bottom: 30, left: 40},
         width = this.state.svgWidth - margin.left - margin.right,
         height = this.state.svgHeight - margin.top - margin.bottom - 5;
@@ -351,6 +346,21 @@ export class TestTimeline extends Component {
             .attr('cy', (d) => { return d.cy() });
         circles.select('.axis-x')
             .call(d3.axisBottom(x)).attr('transform', 'translate(0,' + height + ')')
+        if(this.state.map) {
+            circles
+                .selectAll('rect')
+                .remove()
+            circles.append("g")
+                .attr('class', 'axis-x')
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x));
+
+            circles.append("g")
+                .attr('class', 'axis-y')
+                .call(d3.axisLeft(y));
+            this.bindXValues()
+            this.setState({map: false})
+        }
         this.bindXValues()
 
         circles.select('.axis-y')   
@@ -471,6 +481,7 @@ export class TestTimeline extends Component {
     }
 
     createMap = () => {
+        this.setState({map: true})
         let svg = this.state.circles;
         let margin = {top: 20, right: 20, bottom: 30, left: 40},
             width = this.state.svgWidth - margin.left - margin.right;
@@ -481,7 +492,7 @@ export class TestTimeline extends Component {
             
             griddata.forEach(gridElement => {
                 gridElement.x = step * xStepInterval
-                gridElement.y = step * yStepInterval
+                gridElement.y = step * yStepInterval + 190
                 if(xStepInterval === 19) {
                     xStepInterval = 0;
                     yStepInterval += 1;
@@ -525,8 +536,8 @@ export class TestTimeline extends Component {
                 if(count.objects.length > 0) {
                     count.objects.forEach(object => {
                         if(periodFilter.includes(object.Chronology1stImpression) && timeFilter.includes(object.time)) {
-                            object.x = count.x + (Math.random() * step)
-                            object.y = count.y + (Math.random() * step)
+                            object.x = count.x + (Math.random() * (step - 2))
+                            object.y = count.y + (Math.random() * (step - 2))
                             newarr.push(object)
                         }
                     })
@@ -534,6 +545,7 @@ export class TestTimeline extends Component {
             })
             console.log(newarr)
             let delayMax = 1000;
+            document.querySelector('.svg').classList.add('map')
             svg
                 .selectAll('circle')
                 .data(newarr)

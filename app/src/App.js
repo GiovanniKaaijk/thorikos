@@ -36,9 +36,6 @@ class App extends Component {
         
         <div className="container">
         <ReactPageScroller ref={c => this.reactPageScroller = c}>
-        <div className="svg" onMouseMove={this._onMouseMove.bind(this)}>
-            <NewTimeline gridData={gridData} combinedData={this.state.data} positionX={this.state.x} positionY={this.state.y} />
-          </div> 
           <Banner />
           <Intro />
           <Location />

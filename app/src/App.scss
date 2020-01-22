@@ -224,6 +224,22 @@ header.scrolled {
     min-height: 100vh;
     display: flex;
     flex-direction: row;
+    &.map {
+      &::after {
+        background-image: url(./images/Distribution-Map.png);
+        background-position: center;
+        background-size: 83vw;
+        background-repeat: no-repeat;
+        content: "";
+        opacity: 0.1;
+        top: 0;
+        left: 15vw;
+        bottom: 5vh;
+        right: 0;
+        position: absolute;
+        z-index: -1; 
+      }
+    }
     .sidebar {
       background-color: #020304;
       color: #ffffff;
@@ -273,6 +289,7 @@ header.scrolled {
     svg {
       margin-top: auto;
       margin-left: 10px;
+      position: relative;
       //background-image: url(./images/svg_texture.png);
     }
     .tooltip {
