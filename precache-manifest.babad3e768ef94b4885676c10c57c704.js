@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "65f40d79a6e48fe17e0a5302a6c71ee0",
+    "revision": "c7f9b995e036f379aa02a3fa1658780a",
     "url": "/thorikos/index.html"
   },
   {
-    "revision": "8191c45d842ce7ea1bd3",
-    "url": "/thorikos/static/css/main.482839ba.chunk.css"
+    "revision": "fe50690c8a45d71da44c",
+    "url": "/thorikos/static/css/main.512bc7db.chunk.css"
   },
   {
-    "revision": "df79d9b4a0ce9bf53748",
-    "url": "/thorikos/static/js/2.3d5f86bd.chunk.js"
+    "revision": "6b970e1d5d6a1db4df98",
+    "url": "/thorikos/static/js/2.13f2c925.chunk.js"
   },
   {
     "revision": "6aeb469c0c20fd3334c86de961c4692c",
-    "url": "/thorikos/static/js/2.3d5f86bd.chunk.js.LICENSE"
+    "url": "/thorikos/static/js/2.13f2c925.chunk.js.LICENSE"
   },
   {
-    "revision": "8191c45d842ce7ea1bd3",
-    "url": "/thorikos/static/js/main.d155edaa.chunk.js"
+    "revision": "fe50690c8a45d71da44c",
+    "url": "/thorikos/static/js/main.24ed6ad3.chunk.js"
   },
   {
     "revision": "087890d4804de33390ff",
@@ -28,8 +28,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/thorikos/static/media/AllFieldsheets.5a07b746.csv"
   },
   {
+    "revision": "96d031527f62b43c7710b11cdbfedddf",
+    "url": "/thorikos/static/media/Begin_frame.96d03152.png"
+  },
+  {
     "revision": "534a93e2ab9c8ba4cc7a6663d69d10da",
     "url": "/thorikos/static/media/Distribution-Map.534a93e2.png"
+  },
+  {
+    "revision": "25bb63107a47f92aa7cf8f0093cbd086",
+    "url": "/thorikos/static/media/Man_stip.25bb6310.png"
+  },
+  {
+    "revision": "d919d2c91bf4f0822af7e33c89985162",
+    "url": "/thorikos/static/media/Uitleg_stip_Gif.d919d2c9.gif"
   },
   {
     "revision": "2b1c736b2bbe429618f1eaaf1e53f2de",
@@ -48,10 +60,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/thorikos/static/media/circle.c52c9d5d.png"
   },
   {
-    "revision": "a18014bd962fe2124014965db124cc1d",
-    "url": "/thorikos/static/media/location.a18014bd.png"
-  },
-  {
     "revision": "b90ed10a20972c909e2edd29df648cba",
     "url": "/thorikos/static/media/logo.b90ed10a.svg"
   },
@@ -66,5 +74,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "a84383447ae641c05c1f962033471f42",
     "url": "/thorikos/static/media/surveydata.a8438344.csv"
+  },
+  {
+    "revision": "fb534b3da1d5559e0104b8e13a87415e",
+    "url": "/thorikos/static/media/where-and-why.fb534b3d.png"
   }
 ]);
