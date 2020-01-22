@@ -85,7 +85,6 @@ export class Data extends Component {
             })
             this.setState({combineddata: newarr})
             this.newState(newarr)
-            console.log(objectarr)
         }
 
         cleanData()

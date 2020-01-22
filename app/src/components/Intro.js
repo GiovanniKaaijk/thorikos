@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import seperator from '../images/seperator.svg'
 import spots from '../images/spots.png'
 
-import circle from '../images/circle.png'
 import animation from '../images/Uitleg stip/Uitleg_stip_Gif.gif'
 import startFrame from '../images/Uitleg stip/Begin_frame.png'
 import endFrame from '../images/Uitleg stip/Man_stip.png'

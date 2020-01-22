@@ -228,6 +228,13 @@ header.scrolled {
         }
         div:last-of-type {
           width: 40%;
+          .character {
+            top: 0;
+            right: 0;
+            left: unset;
+            position: absolute;
+            z-index: 10;
+          }
         }
       }
       &::after {
@@ -266,6 +273,27 @@ header.scrolled {
     display: flex;
     flex-direction: row;
     position: relative;
+    .infobox {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 5px;
+      border-radius: 8px;
+      z-index: 10;
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      transition: all .3s;
+      h3 {
+        font-size: 16px;
+        margin: 0;
+      }
+      p {
+        font-size: 14px;
+        margin: 0 0 5px 0;
+      }
+      &.show {
+        opacity: 1;
+      }
+    }
     &.map {
       &::after {
         background-image: url(./images/Distribution-Map.png);

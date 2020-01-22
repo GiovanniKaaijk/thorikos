@@ -377,7 +377,18 @@ export class TestTimeline extends Component {
             .duration(600)
             .delay(function(d){return Math.random()*delayMax;})
             .attr('cx', (d) => {return d.cx() })
-            .attr('cy', (d) => { return d.cy() });
+            .attr('cy', (d) => { return d.cy() })
+            .on('mouseover', (d) => {
+                document.querySelector('.infobox').classList.add('show')
+                document.querySelector('.infobox').style.top = this.props.positionY - 80 + 'px'
+                document.querySelector('.infobox').style.left = this.props.positionX + 'px'
+                document.querySelector('.infobox .production p').textContent = d.ProductionPlace
+                document.querySelector('.infobox .shape p').textContent = d.ShapeObject
+                document.querySelector('.infobox .conservation p').textContent = d.Conservation
+            })
+            .on('mouseout', function() {
+                document.querySelector('.infobox').classList.remove('show')
+            })
         circles.select('.axis-x')
             .call(d3.axisBottom(x)).attr('transform', 'translate(0,' + height + ')')
         if(this.state.map) {
@@ -461,7 +472,7 @@ export class TestTimeline extends Component {
                     newdata.push(newElement)
                 }
             });
-            
+            console.log(newdata)
             svg
                 .selectAll('circle')
                 .data(newdata, function(d) { return d.Event })
@@ -471,8 +482,18 @@ export class TestTimeline extends Component {
                 .attr('cx', (d) => { return d.cx() })
                 .attr('cy', (d) => { return d.cy() })
                 .style('fill', '#303438')
-                .on('mouseover', function(d) {
-                    
+                .on('mouseover', (d) => {
+                    document.querySelector('.infobox').classList.add('show')
+                    document.querySelector('.infobox').style.top = this.props.positionY - 80 + 'px'
+                    document.querySelector('.infobox').style.left = this.props.positionX + 'px'
+                    if(d.element.ProductionPlace.length > 3) {
+                        document.querySelector('.infobox .production p').textContent = d.element.ProductionPlace
+                    }
+                    document.querySelector('.infobox .shape p').textContent = d.element.ShapeObject
+                    document.querySelector('.infobox .conservation p').textContent = d.element.Conservation
+                })
+                .on('mouseout', function() {
+                    document.querySelector('.infobox').classList.remove('show')
                 })
             
             // add the x Axis
@@ -620,7 +641,7 @@ export class TestTimeline extends Component {
                 .duration(600)
                 .delay(function(d){return Math.random()*delayMax;})
                 .attr('cx', (d) => {return d.x })
-                .attr('cy', (d) => { return d.y });
+                .attr('cy', (d) => { return d.y })
             document.querySelector('.sidebar p .thiscount').textContent = newarr.length
     }
     
@@ -684,12 +705,12 @@ export class TestTimeline extends Component {
                             <h2>Objects</h2>
                             <div>
                                 {Object.keys(this.state.objectCategories).map((key, index) => (
-                                    <button style={{backgroundColor: this.state.activeObjectGroup === key ? '#676443' : '#EBD1A4',color: this.state.activeObjectGroup === key ? '#ffffff' : '#494949'}} onClick={this.filterObjects.bind(this, key)} className="objectFilter">{key}</button> 
+                                    <button key={key} style={{backgroundColor: this.state.activeObjectGroup === key ? '#676443' : '#EBD1A4',color: this.state.activeObjectGroup === key ? '#ffffff' : '#494949'}} onClick={this.filterObjects.bind(this, key)} className="objectFilter">{key}</button> 
                                 ))}
                             </div>
                             <div className="singleObjects">
                                 {this.state.activeObjectFilter.map(object => (
-                                    <button style={{backgroundColor: this.state.objectFilter.includes(object) ? '#676443' : '#EBD1A4',color: this.state.objectFilter.includes(object) ? '#ffffff' : '#494949'}} className="objectFilter" onClick={this.changeObjectFilter.bind(this, object)}>{object}</button>
+                                    <button key={object} style={{backgroundColor: this.state.objectFilter.includes(object) ? '#676443' : '#EBD1A4',color: this.state.objectFilter.includes(object) ? '#ffffff' : '#494949'}} className="objectFilter" onClick={this.changeObjectFilter.bind(this, object)}>{object}</button>
                                 ))}
                             </div>
                     </div>
