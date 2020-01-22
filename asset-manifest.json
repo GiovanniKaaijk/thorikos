@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/thorikos/static/css/main.0a1d891b.chunk.css",
+    "main.css": "/thorikos/static/css/main.482839ba.chunk.css",
     "main.js": "/thorikos/static/js/main.d155edaa.chunk.js",
     "main.js.map": "/thorikos/static/js/main.d155edaa.chunk.js.map",
     "runtime-main.js": "/thorikos/static/js/runtime-main.f869ecee.js",
@@ -8,9 +8,9 @@
     "static/js/2.3d5f86bd.chunk.js": "/thorikos/static/js/2.3d5f86bd.chunk.js",
     "static/js/2.3d5f86bd.chunk.js.map": "/thorikos/static/js/2.3d5f86bd.chunk.js.map",
     "index.html": "/thorikos/index.html",
-    "precache-manifest.263335dcfb9c3cbaec279b15bccaf603.js": "/thorikos/precache-manifest.263335dcfb9c3cbaec279b15bccaf603.js",
+    "precache-manifest.cef64fcf28903cc9af657ef53cc84f91.js": "/thorikos/precache-manifest.cef64fcf28903cc9af657ef53cc84f91.js",
     "service-worker.js": "/thorikos/service-worker.js",
-    "static/css/main.0a1d891b.chunk.css.map": "/thorikos/static/css/main.0a1d891b.chunk.css.map",
+    "static/css/main.482839ba.chunk.css.map": "/thorikos/static/css/main.482839ba.chunk.css.map",
     "static/js/2.3d5f86bd.chunk.js.LICENSE": "/thorikos/static/js/2.3d5f86bd.chunk.js.LICENSE",
     "static/media/AllFieldsheets.csv": "/thorikos/static/media/AllFieldsheets.5a07b746.csv",
     "static/media/App.scss": "/thorikos/static/media/banner.2bdaffa1.png",
@@ -25,7 +25,7 @@
   "entrypoints": [
     "static/js/runtime-main.f869ecee.js",
     "static/js/2.3d5f86bd.chunk.js",
-    "static/css/main.0a1d891b.chunk.css",
+    "static/css/main.482839ba.chunk.css",
     "static/js/main.d155edaa.chunk.js"
   ]
 }
