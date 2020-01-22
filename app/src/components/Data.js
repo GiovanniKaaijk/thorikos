@@ -63,6 +63,7 @@ export class Data extends Component {
             })
         }
         let newarr = []
+        let objectarr = []
         let transFormData = () => {
             this.state.surveyData.forEach(surveyData => {
                 this.state.fieldsheetData.forEach(fieldsheetElement => {
@@ -76,11 +77,15 @@ export class Data extends Component {
                         newObject.soilTypes = fieldsheetElement.SoilTypes;
                         newObject.topography = fieldsheetElement.Topography;
                         newarr.push(newObject)
+                        if(!objectarr.includes(newObject.ShapeObject)){
+                            objectarr.push(newObject.ShapeObject)
+                        }
                     }
                 })
             })
             this.setState({combineddata: newarr})
             this.newState(newarr)
+            console.log(objectarr)
         }
 
         cleanData()

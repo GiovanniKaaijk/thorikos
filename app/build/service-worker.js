@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/thorikos/precache-manifest.cef64fcf28903cc9af657ef53cc84f91.js"
+  "/thorikos/precache-manifest.babad3e768ef94b4885676c10c57c704.js"
 );
 
 self.addEventListener('message', (event) => {
