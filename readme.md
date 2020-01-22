@@ -20,8 +20,6 @@ A storytelling website to discover more about the collection of Thorikos.
 
 For the Thorikos website we have created a website that introduces the story about Thorikos to the user. After the introduction, the user can view the data from Thorikos in an interactive visualization
 
-During this course I created a web app to discover more about the history of the world. The data I use comes from [Netwerk Digitaal Erfgoed](https://www.netwerkdigitaalerfgoed.nl/). The user has the ability to explore the world over time. The map shows a heatmap based on the amout of objects found in a country in an certain period of time.
-
 ## Interested in the project? Use the following steps to clone the project to your local computer:
 
 ## Before you clone
