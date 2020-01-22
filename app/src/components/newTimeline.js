@@ -373,11 +373,6 @@ export class TestTimeline extends Component {
             .enter()
             .append('circle')
             .attr('r', this.state.dotRadius)
-            .transition()
-            .duration(600)
-            .delay(function(d){return Math.random()*delayMax;})
-            .attr('cx', (d) => {return d.cx() })
-            .attr('cy', (d) => { return d.cy() })
             .on('mouseover', (d) => {
                 document.querySelector('.infobox').classList.add('show')
                 document.querySelector('.infobox').style.top = this.props.positionY - 80 + 'px'
@@ -389,6 +384,11 @@ export class TestTimeline extends Component {
             .on('mouseout', function() {
                 document.querySelector('.infobox').classList.remove('show')
             })
+            .transition()
+            .duration(600)
+            .delay(function(d){return Math.random()*delayMax;})
+            .attr('cx', (d) => {return d.cx() })
+            .attr('cy', (d) => { return d.cy() })
         circles.select('.axis-x')
             .call(d3.axisBottom(x)).attr('transform', 'translate(0,' + height + ')')
         if(this.state.map) {
