@@ -38,15 +38,23 @@ For the Thorikos website we have created a website that introduces the story abo
 ## Installation
 
 ```
-git clone https://github.com/GiovanniKaaijk/frontend-data.git
+git clone https://github.com/GiovanniKaaijk/thorikos.git
 ```
 Get into the right folder
 ```
-cd frontend-data
+cd thorikos/app/
 ```
 Install used npm packages
 ```
 npm install
+```
+Run the project
+```
+npm start
+```
+Deploy to gh-pages
+```
+npm deploy
 ```
 
 ## Keep up to date
