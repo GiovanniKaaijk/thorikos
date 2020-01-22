@@ -224,6 +224,7 @@ header.scrolled {
     min-height: 100vh;
     display: flex;
     flex-direction: row;
+    position: relative;
     &.map {
       &::after {
         background-image: url(./images/Distribution-Map.png);
