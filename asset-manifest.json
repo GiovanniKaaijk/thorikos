@@ -1,34 +1,33 @@
 {
   "files": {
-    "main.css": "/thorikos/static/css/main.512bc7db.chunk.css",
-    "main.js": "/thorikos/static/js/main.24ed6ad3.chunk.js",
-    "main.js.map": "/thorikos/static/js/main.24ed6ad3.chunk.js.map",
+    "main.css": "/thorikos/static/css/main.fec3ec04.chunk.css",
+    "main.js": "/thorikos/static/js/main.af87dbe3.chunk.js",
+    "main.js.map": "/thorikos/static/js/main.af87dbe3.chunk.js.map",
     "runtime-main.js": "/thorikos/static/js/runtime-main.f869ecee.js",
     "runtime-main.js.map": "/thorikos/static/js/runtime-main.f869ecee.js.map",
-    "static/js/2.13f2c925.chunk.js": "/thorikos/static/js/2.13f2c925.chunk.js",
-    "static/js/2.13f2c925.chunk.js.map": "/thorikos/static/js/2.13f2c925.chunk.js.map",
+    "static/js/2.c4eff05a.chunk.js": "/thorikos/static/js/2.c4eff05a.chunk.js",
+    "static/js/2.c4eff05a.chunk.js.map": "/thorikos/static/js/2.c4eff05a.chunk.js.map",
     "index.html": "/thorikos/index.html",
-    "precache-manifest.babad3e768ef94b4885676c10c57c704.js": "/thorikos/precache-manifest.babad3e768ef94b4885676c10c57c704.js",
+    "precache-manifest.f16601eef4066b27168f4622738442cd.js": "/thorikos/precache-manifest.f16601eef4066b27168f4622738442cd.js",
     "service-worker.js": "/thorikos/service-worker.js",
-    "static/css/main.512bc7db.chunk.css.map": "/thorikos/static/css/main.512bc7db.chunk.css.map",
-    "static/js/2.13f2c925.chunk.js.LICENSE": "/thorikos/static/js/2.13f2c925.chunk.js.LICENSE",
+    "static/css/main.fec3ec04.chunk.css.map": "/thorikos/static/css/main.fec3ec04.chunk.css.map",
+    "static/js/2.c4eff05a.chunk.js.LICENSE": "/thorikos/static/js/2.c4eff05a.chunk.js.LICENSE",
     "static/media/AllFieldsheets.csv": "/thorikos/static/media/AllFieldsheets.5a07b746.csv",
     "static/media/Begin_frame.png": "/thorikos/static/media/Begin_frame.96d03152.png",
     "static/media/App.scss": "/thorikos/static/media/banner.2bdaffa1.png",
     "static/media/Man_stip.png": "/thorikos/static/media/Man_stip.25bb6310.png",
     "static/media/Uitleg_stip_Gif.gif": "/thorikos/static/media/Uitleg_stip_Gif.d919d2c9.gif",
-    "static/media/character.png": "/thorikos/static/media/character.c5f59a72.png",
-    "static/media/circle.png": "/thorikos/static/media/circle.c52c9d5d.png",
     "static/media/logo.svg": "/thorikos/static/media/logo.b90ed10a.svg",
     "static/media/seperator.svg": "/thorikos/static/media/seperator.75857030.svg",
     "static/media/spots.png": "/thorikos/static/media/spots.bf0b8a83.png",
     "static/media/surveydata.csv": "/thorikos/static/media/surveydata.a8438344.csv",
+    "static/media/vase.png": "/thorikos/static/media/vase.f40cbd8b.png",
     "static/media/where-and-why.png": "/thorikos/static/media/where-and-why.fb534b3d.png"
   },
   "entrypoints": [
     "static/js/runtime-main.f869ecee.js",
-    "static/js/2.13f2c925.chunk.js",
-    "static/css/main.512bc7db.chunk.css",
-    "static/js/main.24ed6ad3.chunk.js"
+    "static/js/2.c4eff05a.chunk.js",
+    "static/css/main.fec3ec04.chunk.css",
+    "static/js/main.af87dbe3.chunk.js"
   ]
 }
