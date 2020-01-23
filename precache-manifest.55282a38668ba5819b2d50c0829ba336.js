@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c690be9da3d71f6e4b6282a8cc85ecfa",
+    "revision": "c897e4232528db8639dc25cecba41424",
     "url": "/thorikos/index.html"
   },
   {
-    "revision": "afab9f0d4094c9f9cb70",
-    "url": "/thorikos/static/css/main.fec3ec04.chunk.css"
+    "revision": "d8b62c34729716172746",
+    "url": "/thorikos/static/css/main.941b3a3e.chunk.css"
   },
   {
-    "revision": "8fd3ac5bb3908d6e34b3",
-    "url": "/thorikos/static/js/2.c4eff05a.chunk.js"
+    "revision": "097cd6335cd7d920a50f",
+    "url": "/thorikos/static/js/2.86ff076f.chunk.js"
   },
   {
     "revision": "6aeb469c0c20fd3334c86de961c4692c",
-    "url": "/thorikos/static/js/2.c4eff05a.chunk.js.LICENSE"
+    "url": "/thorikos/static/js/2.86ff076f.chunk.js.LICENSE"
   },
   {
-    "revision": "afab9f0d4094c9f9cb70",
-    "url": "/thorikos/static/js/main.55e738ee.chunk.js"
+    "revision": "d8b62c34729716172746",
+    "url": "/thorikos/static/js/main.44044359.chunk.js"
   },
   {
     "revision": "087890d4804de33390ff",
@@ -52,16 +52,32 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/thorikos/static/media/banner.2bdaffa1.png"
   },
   {
+    "revision": "a3a6842fdb6fcfbfe2f73e378d9a7891",
+    "url": "/thorikos/static/media/big-circle.a3a6842f.png"
+  },
+  {
+    "revision": "c5f59a72b4b0e2917541cacede1f727e",
+    "url": "/thorikos/static/media/character.c5f59a72.png"
+  },
+  {
     "revision": "b90ed10a20972c909e2edd29df648cba",
     "url": "/thorikos/static/media/logo.b90ed10a.svg"
+  },
+  {
+    "revision": "b0b91b037b5dc402973582148e8a1301",
+    "url": "/thorikos/static/media/map.b0b91b03.mp4"
+  },
+  {
+    "revision": "554c7780352d5f8e07d73ebb6ecc0efe",
+    "url": "/thorikos/static/media/scroll-down.554c7780.svg"
   },
   {
     "revision": "758570306fa9a9505eb7f957bca17e1c",
     "url": "/thorikos/static/media/seperator.75857030.svg"
   },
   {
-    "revision": "bf0b8a83bd9a53e888af1887bb363694",
-    "url": "/thorikos/static/media/spots.bf0b8a83.png"
+    "revision": "348ff74ce6065fc78955c1556ffd061d",
+    "url": "/thorikos/static/media/squares.348ff74c.png"
   },
   {
     "revision": "a84383447ae641c05c1f962033471f42",
