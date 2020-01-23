@@ -31,11 +31,11 @@ export class TestTimeline extends Component {
         allKindOfObjects: ["Tile", "Cooking pot", "Amphora", "Undetermined", "Lekane", "Closed shape", "Pithos", "Open shape", "Basin", "Cup", "Jug", "Juglet", "Beehive", "Mortar", "Bowl", "Grinding stone", "Kantharos", "Lamp", "Kotyle", "Jar", "Brick", "Skyphos", "Lekythos", "Shell", "Krater", "Lekanis", "Collared jar", "Chytra", "Stone", "Pebble", "Terracotta", "Pedestalled bowl", "Drinking vessel", "Lid", "Table amphora", "Olpe", "Plate", "Oinochoe", "Louterion", "Saltcellar", "Lopas", "Hydria", "Loomweight", "Alabastron", "Aryballos", "Kylix", "Litharge", "Lebes", "Slag", "Cistern lining", "Stamnos", "Bead", "Flake", "Kados", "Scoop", "Pan", "Pessos", "Tripod", "Askos", "Cheese pot", "Antefix", "Griddle", "Loutrophoros", "Stand", "Stemmed cup", "Cooking bell", "Pyxis", "Tankard", "Mug", "Exaleiptron", "Amphoriskos", "Waster", "Stemless cup", "Skeleton", "Storage vessel", "Krateriskos", "Crushing stone", "Psykter", "Pot", "Ashlar", "Crucible", "Sieve", "Trough", "Lopadion", "Brasier", "Perirrhanterion", "Stopper", "Bin", "Clay lump", "Cooking jug"],
         objectCategories: {
             cooking: ["Cooking pot", "Pan", "Cooking jug", "Pot", "Bowl"],
-            household: ["Cup", "Jug","Jar","Lamp","Drinking vessel",],
-            building: ["Tile", "Basin",  "Brick", "Stone"],
-            vases: ["Collared jar", "Chytra","Lekanis","Amphora","Lekane","Pithos","Juglet","Kantharos","Kotyle", "Skyphos", "Lekythos", "Krater", "Closed shape",  "Open shape",],
+            household: ["Cup", "Tripod", "Scoop", "Saltcellar","Jug","Terracotta", "Plate","Jar","Lamp", "Cheese pot","Drinking vessel",],
+            building: ["Table amphora", "Tile", "Basin",  "Brick", "Stone"],
+            vases: ["Collared jar", "Askos", "Stamnos", "Lebes", "Kylix", "Aryballos", "Hydria", "Alabastron", "Louterion", "Oinochoe", "Olpe",  "Lid", "Pedestalled bowl", "Chytra","Lekanis","Amphora","Lekane","Pithos","Juglet","Kantharos","Kotyle", "Skyphos", "Lekythos", "Krater", "Closed shape",  "Open shape",],
             tools: ["Grinding stone", "Mortar"],
-            others: ["Undetermined","Beehive", "Shell", "Pebble"],
+            others: ["Undetermined", "Pessos", "Kados", "Flake", "Bead", "Cistern lining", "Slag", "Litharge", "Loomweight","Beehive", "Lopas", "Shell", "Pebble"],
         },
         activeObjectFilter: [],
         objectFilter: [],
@@ -43,7 +43,7 @@ export class TestTimeline extends Component {
         activeObjectGroup: ''
     }
 
-    //[, "Terracotta", "Pedestalled bowl",  "Lid", "Table amphora", "Olpe", "Plate", "Oinochoe", "Louterion", "Saltcellar", "Lopas", "Hydria", "Loomweight", "Alabastron", "Aryballos", "Kylix", "Litharge", "Lebes", "Slag", "Cistern lining", "Stamnos", "Bead", "Flake", "Kados", "Scoop", "Pessos", "Tripod", "Askos", "Cheese pot", "Antefix", "Griddle", "Loutrophoros", "Stand", "Stemmed cup", "Cooking bell", "Pyxis", "Tankard", "Mug", "Exaleiptron", "Amphoriskos", "Waster", "Stemless cup", "Skeleton", "Storage vessel", "Krateriskos", "Crushing stone", "Psykter", "Ashlar", "Crucible", "Sieve", "Trough", "Lopadion", "Brasier", "Perirrhanterion", "Stopper", "Bin", "Clay lump"]
+    //[,  "Antefix", "Griddle", "Loutrophoros", "Stand", "Stemmed cup", "Cooking bell", "Pyxis", "Tankard", "Mug", "Exaleiptron", "Amphoriskos", "Waster", "Stemless cup", "Skeleton", "Storage vessel", "Krateriskos", "Crushing stone", "Psykter", "Ashlar", "Crucible", "Sieve", "Trough", "Lopadion", "Brasier", "Perirrhanterion", "Stopper", "Bin", "Clay lump"]
 
     /**
      * Function to sort an array of objects by some specific key.
@@ -100,6 +100,10 @@ export class TestTimeline extends Component {
             document.querySelector('.switch').classList.add('right')
             document.querySelector('.switch').classList.remove('left')
         })
+
+        // this.state.objectCategories.forEach(categorie => {
+
+        // })
     }
     componentDidUpdate(){
         this.countobjects(this.state.filterType)
@@ -142,6 +146,29 @@ export class TestTimeline extends Component {
                         counter.forEach(timeperiod => {
                             if(timeperiod.period === dataElement.Chronology1stImpression){ 
                                 if(!newcountTracker.includes(timeperiod.period)){
+                                    if(timeperiod.period === 'archaic') {
+                                        timeperiod.array = 5;
+                                    } else if(timeperiod.period === 'archaic/classical') {
+                                        timeperiod.array = 6;
+                                    } else if(timeperiod.period === 'archaic/hellenistic') {
+                                        timeperiod.array = 8;
+                                    } else if(timeperiod.period === 'bronze age') {
+                                        timeperiod.array = 2;
+                                    } else if(timeperiod.period === 'classical') {
+                                        timeperiod.array = 7;
+                                    } else if(timeperiod.period === 'classical/hellenistic') {
+                                        timeperiod.array = 9;
+                                    } else if(timeperiod.period === 'geometric/archaic') {
+                                        timeperiod.array = 4;
+                                    } else if(timeperiod.period === 'late roman') {
+                                        timeperiod.array = 10;
+                                    } else if(timeperiod.period === 'middle bronze age') {
+                                        timeperiod.array = 3;
+                                    } else if(timeperiod.period === 'prehistoric') {
+                                        timeperiod.array = 1;
+                                    } else if(timeperiod.period === "undetermined") {
+                                        timeperiod.array = 11;
+                                    } 
                                     newcountTracker.push(timeperiod.period)
                                     newCounter.push(timeperiod)
                                 }
@@ -183,9 +210,10 @@ export class TestTimeline extends Component {
                     }
                 })
             }
-
             newCounter.sort(this.dynamicSort('count', 'desc'))
             newCounter = newCounter.splice(0,11)
+            newCounter.sort(this.dynamicSort('array'))
+            console.log(newCounter)
             if(this.state.firstInit === true) {
                 this.setState({topTenCounts: newCounter})
             }
@@ -702,7 +730,7 @@ export class TestTimeline extends Component {
                     <div className="timeperiods">
                     <div className="filter">
                         {this.state.topTenCounts.map(timePeriod => (
-                                <button style={{backgroundColor: this.state.selectedTimeFilter.includes(timePeriod.period) ? '#676443' : '#EBD1A4',color: this.state.selectedTimeFilter.includes(timePeriod.period) ? '#ffffff' : '#494949'}} class="timePeriodFilter" key={timePeriod.period} id={timePeriod.period} onClick={this.changePeriodfilter.bind(this, timePeriod.period)}>{timePeriod.period}</button>
+                                <button style={{backgroundColor: this.state.selectedTimeFilter.includes(timePeriod.period) ? '#676443' : '#EBD1A4',color: this.state.selectedTimeFilter.includes(timePeriod.period) ? '#ffffff' : '#494949'}} className="timePeriodFilter" key={timePeriod.period} id={timePeriod.period} onClick={this.changePeriodfilter.bind(this, timePeriod.period)}>{timePeriod.period}</button>
                         ))}
                     </div>
                     </div>

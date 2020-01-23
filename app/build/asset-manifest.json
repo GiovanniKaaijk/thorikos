@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/thorikos/static/css/main.941b3a3e.chunk.css",
-    "main.js": "/thorikos/static/js/main.44044359.chunk.js",
-    "main.js.map": "/thorikos/static/js/main.44044359.chunk.js.map",
+    "main.css": "/thorikos/static/css/main.b50acc34.chunk.css",
+    "main.js": "/thorikos/static/js/main.fe0216ac.chunk.js",
+    "main.js.map": "/thorikos/static/js/main.fe0216ac.chunk.js.map",
     "runtime-main.js": "/thorikos/static/js/runtime-main.f869ecee.js",
     "runtime-main.js.map": "/thorikos/static/js/runtime-main.f869ecee.js.map",
     "static/js/2.86ff076f.chunk.js": "/thorikos/static/js/2.86ff076f.chunk.js",
     "static/js/2.86ff076f.chunk.js.map": "/thorikos/static/js/2.86ff076f.chunk.js.map",
     "index.html": "/thorikos/index.html",
-    "precache-manifest.55282a38668ba5819b2d50c0829ba336.js": "/thorikos/precache-manifest.55282a38668ba5819b2d50c0829ba336.js",
+    "precache-manifest.e17370d03d69b8187fd004e27c963b0c.js": "/thorikos/precache-manifest.e17370d03d69b8187fd004e27c963b0c.js",
     "service-worker.js": "/thorikos/service-worker.js",
-    "static/css/main.941b3a3e.chunk.css.map": "/thorikos/static/css/main.941b3a3e.chunk.css.map",
+    "static/css/main.b50acc34.chunk.css.map": "/thorikos/static/css/main.b50acc34.chunk.css.map",
     "static/js/2.86ff076f.chunk.js.LICENSE": "/thorikos/static/js/2.86ff076f.chunk.js.LICENSE",
     "static/media/AllFieldsheets.csv": "/thorikos/static/media/AllFieldsheets.5a07b746.csv",
     "static/media/Begin_frame.png": "/thorikos/static/media/Begin_frame.96d03152.png",
@@ -31,7 +31,7 @@
   "entrypoints": [
     "static/js/runtime-main.f869ecee.js",
     "static/js/2.86ff076f.chunk.js",
-    "static/css/main.941b3a3e.chunk.css",
-    "static/js/main.44044359.chunk.js"
+    "static/css/main.b50acc34.chunk.css",
+    "static/js/main.fe0216ac.chunk.js"
   ]
 }

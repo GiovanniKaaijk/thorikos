@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c897e4232528db8639dc25cecba41424",
+    "revision": "998be3bcedb4f112e81a5cd5644f6c9e",
     "url": "/thorikos/index.html"
   },
   {
-    "revision": "d8b62c34729716172746",
-    "url": "/thorikos/static/css/main.941b3a3e.chunk.css"
+    "revision": "1b4e19421f6887b1d07c",
+    "url": "/thorikos/static/css/main.b50acc34.chunk.css"
   },
   {
     "revision": "097cd6335cd7d920a50f",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/thorikos/static/js/2.86ff076f.chunk.js.LICENSE"
   },
   {
-    "revision": "d8b62c34729716172746",
-    "url": "/thorikos/static/js/main.44044359.chunk.js"
+    "revision": "1b4e19421f6887b1d07c",
+    "url": "/thorikos/static/js/main.fe0216ac.chunk.js"
   },
   {
     "revision": "087890d4804de33390ff",
