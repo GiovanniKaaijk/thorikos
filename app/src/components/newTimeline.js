@@ -73,8 +73,14 @@ export class TestTimeline extends Component {
           );
         };
       }
+
+    changeScroll = () => {
+        this.props.changeScroll()
+        document.querySelector('.svg').removeEventListener('mouseover', this.changeScroll)
+    }
     
     componentDidMount(){
+        document.querySelector('.svg').addEventListener('mouseover', this.changeScroll)
         let arr = [];
         this.state.timePeriods.forEach(period => {
             let newCount = {
@@ -686,7 +692,7 @@ export class TestTimeline extends Component {
                 <div className="content">
                     <h1>The inventory</h1>
                     <p><span className="thiscount"></span> of the <span className="maxcount"></span> objects</p>
-                    <p>The Thorikos Archaeological Research Project (TARP) stands in a long tradition of Belgian fieldwork, starting in 1960 with the excavations</p>
+                    <p>Below you can dive in our database. Here you can see all the shards we found. It is possible to go through the historic periods and different objects. You could switch to the map mode, to get more information about where the shard are found.</p>
                     <div className="switch left">
                     <button className="filterBtn map" onClick={this.runFilter}><img className="arrow" src={timelineArrow} alt="arrow icon"/></button>
                         <button className="filterBtn timeline" onClick={this.createMap}><img src={mapIcon} alt="map icon"/></button>
@@ -694,12 +700,11 @@ export class TestTimeline extends Component {
                     </div>
                     
                     <div className="timeperiods">
+                    <div className="filter">
                         {this.state.topTenCounts.map(timePeriod => (
-                            <div key={timePeriod.period} className="filter">
-                                <input type="checkbox" id={timePeriod.period} onClick={this.changePeriodfilter.bind(this, timePeriod.period)} />
-                                <label htmlFor={timePeriod.period}>{timePeriod.period}</label>
-                            </div>
+                                <button style={{backgroundColor: this.state.selectedTimeFilter.includes(timePeriod.period) ? '#676443' : '#EBD1A4',color: this.state.selectedTimeFilter.includes(timePeriod.period) ? '#ffffff' : '#494949'}} class="timePeriodFilter" key={timePeriod.period} id={timePeriod.period} onClick={this.changePeriodfilter.bind(this, timePeriod.period)}>{timePeriod.period}</button>
                         ))}
+                    </div>
                     </div>
                     <div className="objects">
                             <h2>Objects</h2>

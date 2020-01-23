@@ -108,6 +108,18 @@ header.scrolled {
   }
 }
 
+@keyframes arrowDown {
+  0% {
+    top: 90%;
+  }
+  50% {
+    top: 89%;
+  }
+  100% {
+    top: 90%;
+  }
+}
+
 .container {
   //margin-top: 80px;
   .banner {
@@ -115,6 +127,14 @@ header.scrolled {
     box-sizing: border-box;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
+    .scrolldown {
+      position: absolute;
+      top: 90%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      filter: invert(1);
+      animation: arrowDown infinite 2s ease;
+    }
   }
   .banner {
     background-image: url(./images/banner.png);
@@ -150,6 +170,11 @@ header.scrolled {
     flex-direction: column;
     position: relative;
     min-height: 100vh;
+    &.video {
+      .flex {
+        margin-top: 100px;
+      }
+    }
     .circle {
       position: absolute;
       width: 200px;
@@ -159,6 +184,7 @@ header.scrolled {
       margin: 0;
       width: 100%;
       height: auto;
+      z-index: 100;
     }
     .flex {
       display: flex;
@@ -173,9 +199,10 @@ header.scrolled {
         width: 50%;
         .spots {
           position: absolute;
-          width: 35%;
+          width: 40%;
           z-index: 2;
-          left: 850px;
+          right: 0;
+          top: 0;
         }
         .character {
           position: absolute;
@@ -274,7 +301,8 @@ header.scrolled {
     flex-direction: row;
     position: relative;
     .infobox {
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: rgba(255, 255, 255, 0.98);
+      border: .5px solid rgba(0, 0, 0, 0.43);
       padding: 5px;
       border-radius: 8px;
       z-index: 10;
@@ -282,6 +310,11 @@ header.scrolled {
       opacity: 0;
       pointer-events: none;
       transition: all .3s;
+      width: 400px;
+      > div {
+        width: 50%;
+        display: inline-block;
+      }
       h3 {
         font-size: 16px;
         margin: 0;
@@ -344,11 +377,13 @@ header.scrolled {
       .timeperiods {
         margin: 0 auto;
         .filter {
-          display: flex;
+          position: relative;
+          margin-top: 15px;
           label {
             display: flex;
             width: 100%;
             margin-left: 10px;
+            position: absolute;
             sup {
               font-size: 10px;
               margin-left: auto;
@@ -356,6 +391,7 @@ header.scrolled {
             }
           }
           input {
+            background-color: #EBD1A4;
             margin-left: auto;
             margin-right: 0;
           }
@@ -436,7 +472,7 @@ header.scrolled {
       //   display: flex;
       //   width: 100%;
       // }
-      .objectFilter {
+      .objectFilter, .timePeriodFilter {
         font-size: 12px;
         border: none;
         width: 30%;
@@ -449,6 +485,10 @@ header.scrolled {
         &::first-letter {
           text-transform: uppercase;
         }
+      }
+      .timePeriodFilter {
+        width: 40%;
+        margin: 1.5% 5%;
       }
     }
     svg {
@@ -465,6 +505,40 @@ header.scrolled {
       border: 1px solid rgba(0, 0, 0, 0.36);
       transition: opacity 0.3s;
       pointer-events: none;
+    }
+  }
+  .video {
+    min-height: 100vh;
+    .flex {
+      opacity: 0;
+      transition: all .3s;
+      &.show {
+        opacity: 1;
+      }
+      .squares {
+        position: absolute;
+        left: 0;
+        bottom: 75px;
+        width: 700px;
+      }
+    }
+    >div:first-of-type {
+      width: 100vw !important;
+      height: auto !important;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      video {
+        width: 100vw !important;
+        height: auto !important;
+      }
     }
   }
 }

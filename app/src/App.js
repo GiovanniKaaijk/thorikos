@@ -6,9 +6,10 @@ import Data from './components/Data'
 
 //import Header from './components/Header'
 import Banner from './components/Banner'
-import Intro from './components/Intro'
+import Animation from './components/Animation'
 import Location from './components/Location'
-
+import Grid from './components/Grid'
+import Intro from './components/Intro'
 import Collection from './components/Collection'
 
 import { gridData } from './helpers/GridPlot'
@@ -22,7 +23,8 @@ class App extends Component {
     data: [],
     x: 0,
     y: 0,
-    vh: 0
+    vh: 0,
+    blockScroll: false
   }
 
   componentDidMount() {
@@ -31,6 +33,10 @@ class App extends Component {
     this.setState({vh: vh})
   }
 
+  changeScroll = () => {
+    this.setState({blockScroll: true})
+  }
+  
   goToPage = (pageNumber) => {
     this.reactPageScroller.goToPage(pageNumber);
   }
@@ -47,11 +53,13 @@ class App extends Component {
       <div className="App">
         
         <div className="container">
-        <ReactPageScroller ref={(c) => {this.reactPageScroller = c}} animationTimer={1000} >
+        <ReactPageScroller ref={(c) => {this.reactPageScroller = c}} animationTimer={1000} blockScrollUp={this.state.blockScroll} >
 
           <Banner />
           <Intro />
+          <Animation />
           <Location />
+          <Grid />
           <Collection />
           <div className="svg" onMouseMove={this._onMouseMove.bind(this)}>
             <div className="infobox">
@@ -68,7 +76,7 @@ class App extends Component {
                 <p></p>
               </div>
             </div>
-            <NewTimeline gridData={gridData} combinedData={this.state.data} positionX={this.state.x} positionY={this.state.y} />
+            <NewTimeline changeScroll={this.changeScroll} gridData={gridData} combinedData={this.state.data} positionX={this.state.x} positionY={this.state.y} />
           </div> 
           </ReactPageScroller>
           <Data setNewState={this.setNewState} />

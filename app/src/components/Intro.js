@@ -1,43 +1,14 @@
 import React, { Component } from 'react'
 import seperator from '../images/seperator.svg'
-import spots from '../images/spots.png'
+import spots from '../images/big-circle.png'
 
-import animation from '../images/Uitleg stip/Uitleg_stip_Gif.gif'
-import startFrame from '../images/Uitleg stip/Begin_frame.png'
-import endFrame from '../images/Uitleg stip/Man_stip.png'
+import character from '../images/character.png'
 
-export class Intro extends Component {
-    state = {
-        image: startFrame,
-        init: true,
-        click: true
-    }
+export class Animation extends Component {
 
-    animation = () => {
-        setTimeout(() => {
-            this.setState({image: endFrame, click: true})
-            document.querySelector('.character').classList.remove('width')
-        }, 3700)
-    }
-    componentDidMount() {
-        document.querySelector('.intro-gif').addEventListener('mouseover', () => {
-            if(this.state.init) {
-                setTimeout(() => {
-                    document.querySelector('.character').classList.add('width')
-                    this.setState({image: animation, init: false}, this.animation())
-                }, 1000);
-            }
-        })
-        document.querySelector('.character').addEventListener('click', () => {
-            if(this.state.click) {
-                document.querySelector('.character').classList.add('width')
-                this.setState({image: animation, init: false, click: false}, this.animation())
-            }
-        })
-    }
     render() {
         return (
-            <section className="introduction intro-gif">
+            <section className="introduction">
                     <img className="seperator" src={seperator} alt="seperator" />
                     <div className="flex">
                         
@@ -49,7 +20,7 @@ export class Intro extends Component {
                         </div>
                         <div>
                             <img className="spots" src={spots} alt="spots" />
-                            <img className="character" src={this.state.image} alt="character" />
+                            <img className="character" src={character} alt="character" />
                         </div>
                     </div>
                 </section>
@@ -57,4 +28,4 @@ export class Intro extends Component {
     }
 }
 
-export default Intro
+export default Animation
